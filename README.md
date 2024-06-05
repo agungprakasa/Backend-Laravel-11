@@ -2,10 +2,10 @@
 
 <p align="center">
 Belajar Membuat Backend Laravel
--JWT
--Query Builder
--RESTFUL API
 </p>
+- JWT
+- Query Builder
+- RESTFUL API
 
 ## About Laravel
 
