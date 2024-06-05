@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Support\Facades\DB;
 
 class LogoutController extends Controller
 {
@@ -21,9 +22,12 @@ class LogoutController extends Controller
     {        
         //remove token
         $removeToken = JWTAuth::invalidate(JWTAuth::getToken());
-
+        $Token = JWTAuth::getToken();
+        // $email = $request->session()->get('email');
         if($removeToken) {
             //return response JSON
+           
+            $deleteToken = DB::table('users')->where('remember_token',$Token)->update(['remember_token' => NULL]);
             return response()->json([
                 'success' => true,
                 'message' => 'Logout Berhasil!',  
